@@ -1,0 +1,225 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+:root {
+  --white: #fafafa;
+  --grey: #ececec;
+  --black: #111111;
+  --darkgrey: #606060;
+  --lightgrey: #d8d8d8;
+  --aqua: #68c2f2;
+  --darkaqua: #238ec6;
+  --red: #c75042;
+  --green: #acd32d;
+  --darkgreen: #617d06;
+  --border-radius: 8px;
+  --box-shadow-main: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
+  --box-shadow-secondary: rgba(0, 0, 0, 0.2) 0 3px 5px -1px;
+  --secondary-font: Georgia;
+  --font-size-300: 0.75rem;
+  --font-size-400: 1rem;
+  --font-size-500: 1.25rem;
+  --font-size-600: 1.5rem;
+  --font-size-900: 3rem;
+  --font-weight-400: 400;
+  --font-weight-700: 700;
+  --font-family-secondary: "Libre Baskerville", serif;
+}
+
+body {
+  background-color: var(--grey);
+}
+
+/* --- Display Center Align --- */
+.body-wrapper {
+  max-width: 960px;
+  min-height: 100vh;
+  margin: auto;
+}
+
+/* --- Display Grid --- */
+.content-container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.game-board {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tic-tac-toe {
+  grid-row-start: 1;
+  grid-column-start: 2;
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-900);
+}
+
+.area {
+  display: flex;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-secondary);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.area-inactive {
+  background-color: var(--lightgrey);
+}
+
+.area:hover {
+  cursor: pointer;
+  box-shadow: var(--box-shadow-main);
+}
+
+/* --- Marks Styles--- */
+.circle:before,
+.circle:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.circle:before {
+  width: 100px;
+  height: 100px;
+  background-color: var(--aqua);
+}
+.circle:after {
+  width: 65px;
+  height: 65px;
+  background-color: white;
+}
+
+.cross:before,
+.cross:after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 100px;
+  background-color: var(--green);
+}
+
+.cross:before {
+  transform: rotate(45deg);
+}
+.cross:after {
+  transform: rotate(-45deg);
+}
+
+/* --- Players Styles--- */
+
+.player {
+  grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size-500);
+}
+
+.score {
+  margin-top: 15px;
+  font-size: var(--font-size-900);
+  font-weight: var(--font-weight-700);
+}
+
+.player-inactive {
+  color: var(--lightgrey);
+}
+
+/* --- Winning Message Style and Overlay --- */
+
+.winning-message-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
+.winning-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.winning-message-text {
+  color: var(--white);
+  font-size: var(--font-size-900);
+  text-align: center;
+}
+
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+/* --- Style of all buttons --- */
+.btn-main {
+  width: fit-content;
+  background-color: var(--aqua);
+  border-radius: var(--border-radius);
+  border-style: none;
+  box-shadow: var(--box-shadow-main);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  padding: 4px 24px;
+  text-align: center;
+}
+
+.btn-main:hover {
+  background: var(--darkaqua);
+  color: var(--white);
+}
+
+/* --- Overwrite for Game Button Colour --- */
+
+.btn-game {
+  grid-column-start: 2;
+  background: var(--aqua);
+  color: var(--white);
+}
+
+.btn-game-active {
+  background: var(--white);
+  color: var(--darkgrey);
+}
+
+.btn-game:hover {
+  background: var(--darkaqua);
+  color: var(--white);
+}
